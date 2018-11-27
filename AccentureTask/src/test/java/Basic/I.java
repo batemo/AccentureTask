@@ -6,7 +6,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static Basic.BaseClass.driver;
@@ -21,13 +20,13 @@ public class I {
     public I()
     {
         baseClass = new BaseClass();
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, 30);
         javascriptExecutor = (JavascriptExecutor) driver;
         builder = new Actions(driver);
     }
 
     public static void click(WebElement element){
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        wait.until(ExpectedConditions.visibilityOf(element));
         element.click();
     }
 
@@ -47,22 +46,10 @@ public class I {
         builder.moveToElement(element).build().perform();
     }
 
-    public static void selectFromDropDown(WebElement element, String value){
-
-        I.click(element);
-
-    }
-
-
-
-    /*
-        Take screen shot with selenium
-     */
     public static void takeScreenShot(String shotName) throws Exception{
         File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         File destination = new File("D:\\Downloads\\" + shotName + ".png");
         FileUtils.copyFile(src, destination);
     }
-
 
 }

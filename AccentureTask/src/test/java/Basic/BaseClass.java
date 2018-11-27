@@ -14,6 +14,7 @@ public class BaseClass {
         return driver;
     }
 
+    //add relative path to the driver and put the driver in the project
     @BeforeClass
     public static void setUp(){
         System.setProperty("webdriver.chrome.driver",
